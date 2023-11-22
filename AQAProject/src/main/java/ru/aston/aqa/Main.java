@@ -1,37 +1,79 @@
 package ru.aston.aqa;
 
-import java.util.Arrays;
+import ru.aston.aqa.animals.Animal;
+import ru.aston.aqa.animals.Cat;
+import ru.aston.aqa.animals.Dog;
+import ru.aston.aqa.animals.Plate;
+import ru.aston.aqa.shapes.Circle;
+import ru.aston.aqa.shapes.Rectangle;
+import ru.aston.aqa.shapes.Shape;
+import ru.aston.aqa.shapes.Triangle;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Employee[] employees = createFiveEmployees();
-        for (Employee e : employees) {
-            if (e.getAge() > 40) {
-                e.printInfo();
-            }
+        catAndDogRunAndSwim();
+        printAnimalStatistic();
+        feedingCats();
+
+        Shape[] shapes = new Shape[] {
+                new Circle(7, "зеленый", "темно-зеленый"),
+                new Rectangle(5, 10, "оранжевый", "синий"),
+                new Triangle(3, 3, 3, "белый", "черный")
+        };
+
+        for(Shape shape : shapes) {
+            System.out.println(shape);
         }
 
-        Park park = new Park("Диво остров");
-        park.addAttraction("Колесо обозрения", "10:00-22:00", 150);
-        park.addAttraction("Американские горки", "10:00-20:00", 300);
-        park.printParkInfo();
     }
 
-    public static Employee[] createFiveEmployees() {
-        return new Employee[]{
-                new Employee("Иванов Иван Иванович", "тестировщик ПО",
-                        "ivan@company.ru", "+79993332211", 100000, 35),
-                new Employee("Петрова Анна Валерьевна", "тестировщик ПО",
-                        "anna@company.ru", "+79992345678", 120000, 42),
-                new Employee("Сидоров Андрей Сергеевич", "разработчик ПО",
-                        "andrey@company.ru", "+79992224566", 90000, 37),
-                new Employee("Петренко Дарья Васильевна", "разработчик ПО",
-                        "darya@company.ru", "+79997775544", 140000, 28),
-                new Employee("Максимов Максим Константинович", "аналитик",
-                        "maksim@company.ru", "+79992227788", 100000, 45),
+    public static void catAndDogRunAndSwim() {
+        Animal[] animals = {
+                new Dog("Шарик"),
+                new Cat("Матроскин", 5),
         };
+
+        for(Animal animal : animals) {
+            animal.run(100);
+            animal.run(600);
+            animal.swim(5);
+            animal.swim(15);
+        }
     }
+
+    public static void printAnimalStatistic() {
+        System.out.printf(
+                "%nСтатистика:%n" +
+                "\tКоличество животных: %d%n" +
+                "\tКоличество котов: %d%n" +
+                "\tКоличество собак: %d%n%n", Animal.getCount(), Cat.getCount(), Dog.getCount());
+    }
+
+    public static void feedingCats() {
+        Cat[] cats = {
+                new Cat("Barsik", 5),
+                new Cat("Murzik", 10),
+                new Cat("Vasya", 4)
+        };
+
+        Plate plate = new Plate(15);
+        plate.info();
+
+        // кормим котов
+        for (Cat cat : cats) {
+            cat.eat(plate);
+            System.out.println("Еды осталось - " + plate.getFood());
+        }
+
+        // добавляем еду и кормим Васю
+        System.out.println("Добавляем еду в тарелку.");
+        plate.addFood(4);
+        plate.info();
+        cats[2].eat(plate);
+        System.out.println(cats[2].getName() + " сытость: " + cats[2].isSatiety());
+    }
+
 }
 
