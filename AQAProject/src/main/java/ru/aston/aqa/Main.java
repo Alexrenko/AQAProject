@@ -26,8 +26,14 @@ public class Main {
     }
 
     public static int sumArrayElements(String[][] array) throws MyArraySizeException, MyArrayDataException {
-        if (array.length != 4 || array[0].length != 4) {
+        if (array.length != 4) {
             throw new MyArraySizeException("Массив должен быть размером 4x4");
+        }
+
+        for (String[] strings : array) {
+            if (strings.length != 4) {
+                throw new MyArraySizeException("Массив должен быть размером 4x4");
+            }
         }
 
         int sum = 0;
