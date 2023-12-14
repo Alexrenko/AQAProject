@@ -8,15 +8,15 @@ public class Main {
             System.out.println("Факториал 0: " + FactorialCalculator.factorial(0));
             System.out.println("Факториал 1: " + FactorialCalculator.factorial(1));
             System.out.println("Факториал 5: " + FactorialCalculator.factorial(5));
-            System.out.println("Факториал -1 (должен вызвать исключение): " + FactorialCalculator.factorial(-1));
+            System.out.println("Факториал -1: " + FactorialCalculator.factorial(-1));
         } catch (IllegalArgumentException e) {
             System.out.println("Ошибка: " + e.getMessage());
         }
 
         try {
-            System.out.println("Факториал 5: " + FactorialCalculator.factorial(150));
-        } catch (ArithmeticException ex) {
-            System.out.println("Ошибка: " + ex.getMessage());
+            System.out.println("Факториал 150: " + FactorialCalculator.factorial(150));
+        } catch (ArithmeticException e) {
+            System.out.println("Ошибка: " + e.getMessage());
         }
 
     }
